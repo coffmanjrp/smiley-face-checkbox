@@ -1,0 +1,112 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --disabled-color: #fe0000;
+  --enabled-color: #05be05;
+  --disabled-shadow: #fe000066;
+  --enabled-shadow: #05be0566;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.box {
+  position: relative;
+  width: 160px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.box .checkbox {
+  position: relative;
+  appearance: none;
+  z-index: 1;
+}
+
+/* Face */
+
+.box .face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--disabled-color);
+  border-radius: 80px;
+  box-shadow: 0 15px 25px var(--disabled-shadow);
+  transition: all 0.5s ease;
+}
+
+.box .face i {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 72px;
+  height: 72px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+/* Eyes */
+
+.box .checkbox:checked ~ .face {
+  background-color: var(--enabled-color);
+  box-shadow: 0 15px 25px var(--enabled-shadow);
+}
+
+.box .checkbox:checked ~ .face i {
+  left: 84px;
+}
+
+.box .face i::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--disabled-color);
+  border-radius: 50%;
+  box-shadow: 31px 0 0 var(--disabled-color);
+  transition: all 0.5s ease;
+}
+
+.box .checkbox:checked ~ .face i::before {
+  left: 13px;
+  background-color: var(--enabled-color);
+  box-shadow: 31px 0 0 var(--enabled-color);
+}
+
+/* Mouth */
+
+.box .face i::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 16px);
+  bottom: 15px;
+  width: 30px;
+  height: 6px;
+  background-color: var(--disabled-color);
+  border-radius: 6px;
+  transition: all 0.5s ease;
+}
+
+.box .checkbox:checked ~ .face i::after {
+  bottom: 13px;
+  height: 15px;
+  background-color: var(--enabled-color);
+  border-radius: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
